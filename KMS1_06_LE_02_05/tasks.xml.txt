@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Program>
+    <Namespace name="KMS1_06_LE_02_05">
+        <Class name="Program" accessModifier="internal">
+            <Method name="Main" returnType="void" accessModifier="static">
+                <Parameters>
+                    <Parameter name="args" type="string[]" />
+                </Parameters>
+                <Body>
+                    <Statement>ToDoManager toDoManager = new ToDoManager();</Statement>
+                    <Statement>toDoManager.PrintMenu();</Statement>
+                </Body>
+            </Method>
+        </Class>
+        <Class name="Task" accessModifier="internal">
+            <Properties>
+                <Property name="TaskName" type="string" accessModifier="public" />
+                <Property name="Description" type="string" accessModifier="public" />
+                <Property name="Prioritet" type="string" accessModifier="public" />
+            </Properties>
+        </Class>
+        <Class name="ToDoManager" accessModifier="internal">
+            <Fields>
+                <Field name="_tasks" type="List&lt;Task&gt;" accessModifier="private static" />
+            </Fields>
+            <Methods>
+                <Method name="PrintMenu" returnType="void" accessModifier="public">
+                    <Body>
+                        <Statement>int userInput;</Statement>
+                        <Statement>bool exit = false;</Statement>
+                        <While condition="!exit">
+                            <Body>
+                                <Statement>Console.WriteLine("...");</Statement>
+                                <Statement>userInput = InputNumber("Geben Sie den Index Ihrer Wahl ein: ");</Statement>
+                                <Switch expression="userInput">
+                                    <Case value="1">
+                                        <Statement>AddTask();</Statement>
+                                    </Case>
+                                    <Case value="2">
+                                        <Statement>PrintTask("Aufgabenliste anzeigen");</Statement>
+                                    </Case>
+                                    <Case value="3">
+                                        <Statement>EditTask();</Statement>
+                                    </Case>
+                                    <Case value="4">
+                                        <Statement>DeleteTask();</Statement>
+                                    </Case>
+                                    <Case value="5">
+                                        <Statement>PrintTaskByPriority();</Statement>
+                                    </Case>
+                                    <Case value="6">
+                                        <Statement>PrintTaskByKeywordsInDescription();</Statement>
+                                    </Case>
+                                    <Case value="0">
+                                        <Statement>exit = true;</Statement>
+                                    </Case>
+                                    <Default>
+                                        <Statement>Console.WriteLine("\n--- Geben Sie nur den Index von 0-6 ein ---\n");</Statement>
+                                    </Default>
+                                </Switch>
+                            </Body>
+                        </While>
+                    </Body>
+                </Method>
+                <!-- Include other methods similarly -->
+                <Method name="AddTask" returnType="void" accessModifier="private static">
+                    <Body>
+                        <Statement>Task newTask = new Task();</Statement>
+                        <Statement>Console.Write("\n*** Aufgabe hinzufügen ***\n");</Statement>
+                        <Statement>newTask.TaskName = InputString("Aufgabe name: ");</Statement>
+                        <Statement>newTask.Description = InputString("Beschreibung: ");</Statement>
+                        <Statement>newTask.Prioritet = InputPriority("Priorität (hoch,mittel,niedrig): ");</Statement>
+                        <Statement>_tasks.Add(newTask);</Statement>
+                    </Body>
+                </Method>
+                
+            </Methods>
+        </Class>
+    </Namespace>
+</Program>
